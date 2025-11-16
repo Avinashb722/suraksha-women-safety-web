@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![Suraksha Logo](client/src/images/logo.png)
+![Suraksha Logo](client/src/images/home.png)
 
 **Suraksha is a smart, real-time women's safety platform designed to provide immediate emergency assistance through SOS alerts, live location tracking, SMS & Email notifications, and trusted contact communication.**
 
