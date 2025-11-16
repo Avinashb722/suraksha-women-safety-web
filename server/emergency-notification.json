@@ -1,0 +1,10 @@
+{
+  "timestamp": "2025-11-12T16:42:51.126Z",
+  "user": "Abhishek Kumar",
+  "phones": [
+    "6361243998",
+    "9876543210"
+  ],
+  "message": "🚨 EMERGENCY: Abhishek Kumar needs help! Location: 12.9716, 77.5946 Maps: https://maps.google.com/maps?q=12.9716,77.5946",
+  "status": "SMS_QUEUED"
+}

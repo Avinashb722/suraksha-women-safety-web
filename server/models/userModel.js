@@ -65,6 +65,10 @@ const UserSchema = mongoose.Schema(
     },
     extraEmail2:{
       type: String
+    },
+    twilioSmsEnabled: {
+      type: Boolean,
+      default: true
     }
   },
   { timestamps: true }

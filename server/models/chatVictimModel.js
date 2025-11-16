@@ -4,13 +4,13 @@ const ChatSchema = mongoose.Schema({
 
 
     sender:{
-        type: mongoose.Types.ObjectId,
-        ref:"User"
+        type: mongoose.Schema.Types.Mixed,
+        required: true
     },
 
     receiver: {
-        type: mongoose.Types.ObjectId,
-        ref: "User"
+        type: mongoose.Schema.Types.Mixed,
+        required: true
     },
 
     textChat: {
@@ -19,8 +19,8 @@ const ChatSchema = mongoose.Schema({
     },
     
     emergency: {
-        type: mongoose.Types.ObjectId,
-        ref: "Emergency"
+        type: mongoose.Schema.Types.Mixed,
+        required: true
     }
 });
 

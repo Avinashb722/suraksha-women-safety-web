@@ -5,6 +5,7 @@ import { Link } from "react-router-dom"
 import { AiOutlineShoppingCart } from 'react-icons/ai'
 import toast from 'react-hot-toast'
 import '../../styles/navbar.css'
+import '../../styles/Sidebar.css'
 import { useAuth } from '../../context/auth'
 
 const Navbar = () => {
@@ -47,12 +48,12 @@ const Navbar = () => {
                     <header className='header_wrapper'>
                         <nav className="navbar navbar-expand-lg fixed-top">
                             <div className="container-fluid mx-3">
+                                <button className="btn me-3 d-block hamburger-btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarNav" aria-controls="sidebarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <BiMenuAltRight size={35} />
+                                </button>
                                 <Link to='/'>
                                     <img src={logo} style={{ width: '130px' }} />
                                 </Link>
-                                <button className="navbar-toggler pe-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                    <BiMenuAltRight size={35} />
-                                </button>
                                 <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                                     <ul className="navbar-nav menu-navbar-nav">
                                         <Link to='/' style={{ textDecoration: 'none' }}>
@@ -68,6 +69,11 @@ const Navbar = () => {
                                         <Link to='/contact' style={{ textDecoration: 'none' }}>
                                             <li className="nav-item">
                                                 <a className="nav-link " aria-current="page">Contact Us</a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/safety-tips' style={{ textDecoration: 'none' }}>
+                                            <li className="nav-item">
+                                                <a className="nav-link " aria-current="page">Safety Tips</a>
                                             </li>
                                         </Link>
                                     </ul>
@@ -89,6 +95,110 @@ const Navbar = () => {
                                     </ul>)
                                     }
                                 </div>
+                                <div className="collapse position-fixed top-0 start-0 h-100 modern-sidebar" id="sidebarNav" style={{width: '320px', zIndex: 1060}}>
+                                    <div className="d-flex flex-column h-100">
+                                        <div className="p-4 border-bottom d-flex justify-content-between align-items-center">
+                                            <h5 className="mb-0 text-primary">Menu</h5>
+                                            <button className="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#sidebarNav">
+                                                ✕
+                                            </button>
+                                        </div>
+                                        <ul className="navbar-nav flex-column p-3 flex-grow-1" style={{maxHeight: 'calc(100vh - 120px)', overflowY: 'auto'}}>
+                                            <Link to='/shake-alert' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">📳</span> Shake Alert
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/fake-call' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">📞</span> Fake Call
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/helpline-numbers' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">📞</span> Helpline Numbers
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/police-map' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">🚔</span> Police Map
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/track-me' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">📍</span> Track Me
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/safe-route' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">🗺️</span> Safe Routes
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/night-mode' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">🌙</span> Night Mode
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/safety-chatbot' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">🤖</span> AI Assistant
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/location-reminder' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">⚠️</span> Safety Zones
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/safety-tips' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">💡</span> Safety Tips
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/safety-quiz' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">🎯</span> Safety Quiz
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/weather-safety' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">🌦️</span> Weather Safety
+                                                    </a>
+                                                </li>
+                                            </Link>
+                                            <Link to='/feedback' style={{ textDecoration: 'none' }} className="mb-2">
+                                                <li className="nav-item">
+                                                    <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                        <span className="me-3">💬</span> Feedback
+                                                    </a>
+                                                </li>
+                                            </Link>
+
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </nav>
                     </header>
@@ -98,12 +208,12 @@ const Navbar = () => {
                 <header className='header_wrapper'>
                     <nav className="navbar navbar-expand-lg fixed-top">
                         <div className="container-fluid mx-3">
+                            <button className="btn me-3 d-block hamburger-btn" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarNav2" aria-controls="sidebarNav2" aria-expanded="false" aria-label="Toggle navigation">
+                                <BiMenuAltRight size={35} />
+                            </button>
                             <Link to='/'>
                                 <img src={logo} style={{ width: '130px' }} />
                             </Link>
-                            <button className="navbar-toggler pe-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                <BiMenuAltRight size={35} />
-                            </button>
                             <div className="collapse navbar-collapse justify-content-end" id="navbarNav">
                                 <ul className="navbar-nav menu-navbar-nav">
                                     <Link to='/emergency' style={{ textDecoration: 'none' }} className="nav-item text-center">
@@ -124,6 +234,8 @@ const Navbar = () => {
                                             <a className="nav-link " aria-current="page">Contact Us</a>
                                         </li>
                                     </Link>
+
+
                                     <Link to='/report' style={{ textDecoration: 'none' }}>
                                         <li className="nav-item">
                                             <a className="nav-link " aria-current="page">Report Incident</a>
@@ -147,6 +259,110 @@ const Navbar = () => {
                                     </Link>
                                 </ul>)
                                 }
+                            </div>
+                            <div className="collapse position-fixed top-0 start-0 h-100 modern-sidebar" id="sidebarNav2" style={{width: '320px', zIndex: 1060}}>
+                                <div className="d-flex flex-column h-100">
+                                    <div className="p-4 border-bottom d-flex justify-content-between align-items-center">
+                                        <h5 className="mb-0 text-primary">Menu</h5>
+                                        <button className="btn btn-sm" data-bs-toggle="collapse" data-bs-target="#sidebarNav2">
+                                            ✕
+                                        </button>
+                                    </div>
+                                    <ul className="navbar-nav flex-column p-3 flex-grow-1" style={{maxHeight: 'calc(100vh - 120px)', overflowY: 'auto'}}>
+                                        <Link to='/shake-alert' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">📳</span> Shake Alert
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/fake-call' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">📞</span> Fake Call
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/helpline-numbers' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">📞</span> Helpline Numbers
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/police-map' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">🚔</span> Police Map
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/track-me' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">📍</span> Track Me
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/safe-route' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">🗺️</span> Safe Routes
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/night-mode' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">🌙</span> Night Mode
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/safety-chatbot' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">🤖</span> AI Assistant
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/location-reminder' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">⚠️</span> Safety Zones
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/safety-tips' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">💡</span> Safety Tips
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/safety-quiz' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">🎯</span> Safety Quiz
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/weather-safety' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">🌦️</span> Weather Safety
+                                                </a>
+                                            </li>
+                                        </Link>
+                                        <Link to='/feedback' style={{ textDecoration: 'none' }} className="mb-2">
+                                            <li className="nav-item">
+                                                <a className="nav-link text-dark p-3 rounded hover-bg-light d-flex align-items-center">
+                                                    <span className="me-3">💬</span> Feedback
+                                                </a>
+                                            </li>
+                                        </Link>
+
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </nav>

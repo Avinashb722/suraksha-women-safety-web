@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Location Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 15px; margin: 10px; font-size: 16px; width: 100%; border: none; border-radius: 5px; }
+    .gps { background: #dc3545; color: white; }
+    .manual { background: #28a745; color: white; }
+    #result { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>Location Test</h2>
+  
+  <button class="gps" onclick="getGPS()">📍 Use My GPS Location</button>
+  <button class="manual" onclick="useBelagavi()">🗺️ Use Belagavi Location</button>
+  
+  <div id="result"></div>
+
+  <script>
+    function getGPS() {
+      document.getElementById('result').innerHTML = 'Getting GPS...';
+      
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            const lat = position.coords.latitude;
+            const lng = position.coords.longitude;
+            document.getElementById('result').innerHTML = 
+              `GPS Location:<br>Lat: ${lat}<br>Lng: ${lng}<br><a href="https://maps.google.com/maps?q=${lat},${lng}" target="_blank">View on Map</a>`;
+          },
+          (error) => {
+            document.getElementById('result').innerHTML = 'GPS failed. Use manual location.';
+          }
+        );
+      } else {
+        document.getElementById('result').innerHTML = 'GPS not supported';
+      }
+    }
+    
+    function useBelagavi() {
+      const lat = 15.8497;
+      const lng = 74.4977;
+      document.getElementById('result').innerHTML = 
+        `Belagavi Location:<br>Lat: ${lat}<br>Lng: ${lng}<br><a href="https://maps.google.com/maps?q=${lat},${lng}" target="_blank">View on Map</a>`;
+    }
+  </script>
+</body>
+</html>

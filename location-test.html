@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Location Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    button { padding: 15px; margin: 10px; font-size: 16px; width: 100%; }
+    select { padding: 15px; margin: 10px; font-size: 16px; width: 100%; }
+    #output { margin-top: 20px; padding: 15px; background: #f0f0f0; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h3>Manual Location Selection (Recommended)</h3>
+  <select id="citySelect" onchange="selectCity()">
+    <option value="">Select Your City</option>
+    <option value="belagavi">Belagavi</option>
+    <option value="bengaluru">Bengaluru</option>
+    <option value="mumbai">Mumbai</option>
+    <option value="delhi">Delhi</option>
+    <option value="pune">Pune</option>
+  </select>
+  <br><br>
+  
+  <h3>Automatic Detection (Not Accurate)</h3>
+  <button onclick="getLocation()">Get My Location (GPS)</button>
+  <button onclick="getIPLocation()">Get Location by IP</button>
+  <p id="output"></p>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        document.getElementById("output").innerHTML = "Getting location...";
+        
+        // Try high accuracy first
+        navigator.geolocation.getCurrentPosition(showPosition, tryAgain, {
+          enableHighAccuracy: true,
+          timeout: 10000,
+          maximumAge: 0
+        });
+      } else {
+        document.getElementById("output").innerText = "Geolocation not supported.";
+      }
+    }
+
+    function tryAgain(error) {
+      console.log('First attempt failed, trying again...');
+      // Try without high accuracy
+      navigator.geolocation.getCurrentPosition(showPosition, showError, {
+        enableHighAccuracy: false,
+        timeout: 15000,
+        maximumAge: 60000
+      });
+    }
+
+    async function getIPLocation() {
+      document.getElementById("output").innerHTML = "Getting location by IP...";
+      
+      try {
+        // Try multiple IP location services
+        const response = await fetch('http://ip-api.com/json/');
+        const data = await response.json();
+        
+        if (data.status === 'success') {
+          const lat = data.lat;
+          const lng = data.lon;
+          const city = data.city;
+          const region = data.regionName;
+          const country = data.country;
+          const link = `https://www.google.com/maps?q=${lat},${lng}`;
+          
+          document.getElementById("output").innerHTML =
+            `IP Location: <br>City: ${city}, ${region}, ${country} <br>Latitude: ${lat} <br>Longitude: ${lng} <br><a href="${link}" target="_blank">View on Map</a>`;
+        } else {
+          throw new Error('IP location failed');
+        }
+      } catch (error) {
+        document.getElementById("output").innerHTML = "IP location failed. Use manual Belagavi buttons.";
+      }
+    }
+
+    function showPosition(position) {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
+      const accuracy = position.coords.accuracy;
+      const link = `https://www.google.com/maps?q=${lat},${lng}`;
+
+      document.getElementById("output").innerHTML =
+        `Latitude: ${lat} <br> Longitude: ${lng} <br> Accuracy: ${accuracy} meters <br> <a href="${link}" target="_blank">View on Map</a> <br><br>
+        <strong>If location is wrong:</strong><br>
+        1. Turn off WiFi, use mobile data<br>
+        2. Turn off VPN if using<br>
+        3. Clear browser location cache<br>
+        4. Use manual Belagavi buttons above`;
+    }
+
+    function useBelagaviLocation() {
+      const lat = 15.8497;
+      const lng = 74.4977;
+      const link = `https://www.google.com/maps?q=${lat},${lng}`;
+
+      document.getElementById("output").innerHTML =
+        `Belagavi Center: <br>Latitude: ${lat} <br> Longitude: ${lng} <br> <a href="${link}" target="_blank">View on Map</a>`;
+    }
+
+    function useBelagaviCamp() {
+      const lat = 15.8520;
+      const lng = 74.5010;
+      const link = `https://www.google.com/maps?q=${lat},${lng}`;
+
+      document.getElementById("output").innerHTML =
+        `Belagavi Camp Area: <br>Latitude: ${lat} <br> Longitude: ${lng} <br> <a href="${link}" target="_blank">View on Map</a>`;
+    }
+
+    function selectCity() {
+      const city = document.getElementById('citySelect').value;
+      const cities = {
+        'belagavi': { lat: 15.8497, lng: 74.4977, name: 'Belagavi, Karnataka' },
+        'bengaluru': { lat: 12.9716, lng: 77.5946, name: 'Bengaluru, Karnataka' },
+        'mumbai': { lat: 19.0760, lng: 72.8777, name: 'Mumbai, Maharashtra' },
+        'delhi': { lat: 28.7041, lng: 77.1025, name: 'New Delhi' },
+        'pune': { lat: 18.5204, lng: 73.8567, name: 'Pune, Maharashtra' }
+      };
+      
+      if (city && cities[city]) {
+        const loc = cities[city];
+        const link = `https://www.google.com/maps?q=${loc.lat},${loc.lng}`;
+        
+        document.getElementById("output").innerHTML =
+          `Selected Location: ${loc.name} <br>Latitude: ${loc.lat} <br>Longitude: ${loc.lng} <br><a href="${link}" target="_blank">View on Map</a> <br><br>
+          <strong>✓ This is accurate for emergency services!</strong>`;
+      }
+    }
+
+    function showError(error) {
+      switch(error.code) {
+        case error.PERMISSION_DENIED:
+          alert("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Location information is unavailable.");
+          break;
+        case error.TIMEOUT:
+          alert("The request to get user location timed out.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("An unknown error occurred.");
+          break;
+      }
+    }
+  </script>
+</body>
+</html>

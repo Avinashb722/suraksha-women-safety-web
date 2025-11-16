@@ -27,11 +27,11 @@ const Register = () => {
             return false;
         }
         if (!email.trim()) {
-            if (!validateEmail(email)) {
-                toast.error('Invalid Email Format');
-                return false;
-            }
             toast.error('Email is required');
+            return false;
+        }
+        if (!validateEmail(email)) {
+            toast.error('Invalid Email Format');
             return false;
         }
         if (!phone.trim()) {
@@ -63,7 +63,7 @@ const Register = () => {
             return false;
         }
         try {
-            const res = await axios.post('https://womensecbackend.onrender.com/api/v1/users/register',
+            const res = await axios.post(`${process.env.REACT_APP_API_URL || 'http://localhost:5001'}/api/v1/users/register`,
                 { uname, email, phone, password, emergencyNo, emergencyMail, pincode });
 
             if (res.status === 201) {
@@ -74,7 +74,11 @@ const Register = () => {
                 toast.error('Email Already Exist! Please Login')
             }
         } catch (err) {
-            toast.error("Error While Register");
+            if (err.response?.status === 400) {
+                toast.error(err.response.data.message || "Email already exists");
+            } else {
+                toast.error("Error While Register");
+            }
             console.log(err)
         }
     }

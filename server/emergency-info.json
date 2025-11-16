@@ -1,0 +1,15 @@
+{
+  "time": "12/11/2025, 10:16:00 pm",
+  "user": "Abhishek Kumar",
+  "location": "12.9716, 77.5946",
+  "mapLink": "https://maps.google.com/maps?q=12.9716,77.5946",
+  "message": "🚨 EMERGENCY: Abhishek Kumar needs help! Location: 12.9716, 77.5946 Maps: https://maps.google.com/maps?q=12.9716,77.5946",
+  "emailContacts": [
+    "abhikumbar636@gmail.com",
+    "backup@example.com"
+  ],
+  "phoneContacts": [
+    "6361243998",
+    "9876543210"
+  ]
+}

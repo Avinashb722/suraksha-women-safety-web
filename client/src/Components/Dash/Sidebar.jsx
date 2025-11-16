@@ -24,8 +24,12 @@ const Sidebar = () => {
     <div style={{ zIndex: '999' }}>
       <section className="sde">
         <div
-          className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark vh-100"
-          style={{ width: 280 }}
+          className="d-flex flex-column flex-shrink-0 p-4 text-white vh-100"
+          style={{ 
+            width: 280,
+            background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+            boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
+          }}
         >
           <ul className="mt-3">
 

@@ -22,6 +22,10 @@ const IncidentSchema = mongoose.Schema(
     },
     address:{
       type: String
+    },
+    files: {
+      type: [String],
+      default: []
     }
 },
     {timestamps: true}

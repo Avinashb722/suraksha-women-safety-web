@@ -11,40 +11,48 @@ const userInfo = asyncHandler(async (req,res) => {
 
 const registerUser = asyncHandler(async(req,res)=>{
     const {uname, email, password, phone,emergencyNo, emergencyMail, pincode} = req.body;
-    console.log(uname)
-    if(!uname || !email || !password){
-        res.status(400);
-        throw new Error("All fields are mandatory baby");
+    console.log('Registration attempt for:', email);
+    
+    if(!uname || !email || !password || !phone || !emergencyNo || !emergencyMail || !pincode){
+        return res.status(400).json({message: "All fields are mandatory"});
     }
 
     const userAvailable = await User.findOne({email: email});
     if(userAvailable){
-        res.status(400).json({message: "Email already exists"});
-        
+        return res.status(400).json({message: "Email already exists"});
     }
     
     const verificationToken = generateverificationToken(email);
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = User.create({
-        uname,
-        email,
-        password: hashedPassword,
-        verificationToken,
-        phoneNo: phone,
-        emergencyMail,
-        emergencyNo,
-        pinCode: pincode
+    
+    try {
+        const user = await User.create({
+            uname,
+            email,
+            password: hashedPassword,
+            verificationToken,
+            phoneNo: phone,
+            emergencyMail,
+            emergencyNo,
+            pinCode: pincode
+        });
 
-    });
-
-    await sendVerificationEmail(email, verificationToken);
-
-
-    if(user){
+        try {
+            await sendVerificationEmail(email, verificationToken);
+        } catch (emailError) {
+            console.error('Email sending failed:', emailError);
+            // Don't fail registration if email fails
+        }
         res.status(201).json({message: "User registered successfully"});
-    }else{
-        res.status(500);
-        throw new Error("Something went wrong");
+        
+    } catch (error) {
+        console.error('Registration error:', error);
+        if (error.code === 11000) {
+            // Duplicate key error
+            const field = Object.keys(error.keyValue)[0];
+            return res.status(400).json({message: `${field} already exists`});
+        }
+        res.status(500).json({message: "Registration failed"});
     }
 });
 
@@ -108,27 +116,57 @@ const loginUser  = asyncHandler(async (req,res) => {
 });
 
 const profileUpdate = asyncHandler(async(req,res) => {
-    const {uid,uname,email,phoneNo,address,pincode,emergencyMail,emergencyNo,extraEmail1,extraEmail2,extraPhone1,extraPhone2} = req.body;
-    const user = await User.findById(uid);
-    if(user){
-        user.uname = uname,
-        user.email = email,
-        user.phoneNo = phoneNo,
-        user.address = address,
-        user.pinCode = pincode,
-        user.emergencyMail = emergencyMail,
-        user.emergencyNo = emergencyNo,
-        user.extraEmail1 = extraEmail1,
-        user.extraEmail2 = extraEmail2,
-        user.extraPhone1 = extraPhone1,
-        user.extraPhone2 = extraPhone2
+    try {
+        console.log('Profile update request:', req.body);
+        console.log('User ID from token:', req.user?.id);
+        
+        const {uname,email,phoneNo,address,pincode,emergencyMail,emergencyNo,extraEmail1,extraEmail2,extraPhone1,extraPhone2} = req.body;
+        const user = await User.findById(req.user.id);
+        
+        if(user){
+            user.uname = uname;
+            user.email = email;
+            user.phoneNo = phoneNo;
+            user.address = address;
+            user.pinCode = pincode;
+            user.emergencyMail = emergencyMail;
+            user.emergencyNo = emergencyNo;
+            user.extraEmail1 = extraEmail1;
+            user.extraEmail2 = extraEmail2;
+            user.extraPhone1 = extraPhone1;
+            user.extraPhone2 = extraPhone2;
 
-        await user.save()
-        res.status(200).json({message: "User updated successfully"})
-    }else{
-        res.status(404).json({message: "Something went wrong"})
+            await user.save();
+            console.log('User updated successfully');
+            res.status(200).json({message: "User updated successfully"});
+        } else {
+            console.log('User not found with ID:', req.user.id);
+            res.status(404).json({message: "User not found"});
+        }
+    } catch (error) {
+        console.error('Profile update error:', error);
+        res.status(500).json({message: "Profile update failed", error: error.message});
     }
-     
+})
+
+const toggleTwilioSms = asyncHandler(async(req,res) => {
+    try {
+        const user = await User.findById(req.user.id);
+        if(!user) {
+            return res.status(404).json({message: "User not found"});
+        }
+        
+        user.twilioSmsEnabled = !user.twilioSmsEnabled;
+        await user.save();
+        
+        res.status(200).json({
+            message: `Twilio SMS ${user.twilioSmsEnabled ? 'enabled' : 'disabled'}`,
+            twilioSmsEnabled: user.twilioSmsEnabled
+        });
+    } catch (error) {
+        console.error('Toggle SMS error:', error);
+        res.status(500).json({message: "Failed to toggle SMS", error: error.message});
+    }
 })
 
 
@@ -146,6 +184,6 @@ module.exports = {
     registerUser,
     loginUser,
     verifyemail,
-    profileUpdate
-
+    profileUpdate,
+    toggleTwilioSms
 }

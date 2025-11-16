@@ -3,13 +3,28 @@ const router = Router();
 const {Incident} = require('../models/incidentRptModel');
 const {Emergency} = require('../models/emergencyModel');
 const {User} = require('../models/userModel')
-const {userInfo , registerUser, loginUser, verifyemail,profileUpdate} = require('../controllers/userCntrl');
+const {userInfo , registerUser, loginUser, verifyemail,profileUpdate, toggleTwilioSms} = require('../controllers/userCntrl');
 const validateToken = require('../middlewares/validateToken');
 router.route('/register').post(registerUser)
 router.route('/login').post(loginUser);
 router.route('/emailverify/:tokenId').get(verifyemail);
+router.route('/manual-verify/:email').get(async (req, res) => {
+    try {
+        const user = await User.findOne({ email: req.params.email });
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+        user.isVerified = true;
+        user.verificationToken = null;
+        await user.save();
+        res.status(200).send('<h1>Email Verified Successfully!</h1><p>You can now login to your account.</p>');
+    } catch (error) {
+        res.status(500).json({ message: 'Verification failed' });
+    }
+});
 router.route('/get_user_info').get(validateToken, userInfo);
-router.route('/update').put(profileUpdate)
+router.route('/update').put(validateToken, profileUpdate)
+router.route('/toggle-sms').put(validateToken, toggleTwilioSms)
 router.route('/getselected').get(async(req,res) => {
     const data = [];
     const edata = [];

@@ -1,0 +1,186 @@
+.safety-tips-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px 0;
+}
+
+.tip-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.tip-card:hover {
+  transform: translateY(-5px);
+}
+
+.tip-card h3 {
+  color: #764ba2;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.tip-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tip-card li {
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 20px;
+}
+
+.tip-card li:before {
+  content: "✓";
+  color: #28a745;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.helplines-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.helplines-section h2 {
+  color: white;
+  font-weight: bold;
+}
+
+.helpline-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.helpline-card:hover {
+  transform: scale(1.05);
+}
+
+.helpline-card h4 {
+  color: #764ba2;
+  margin-bottom: 10px;
+}
+
+.helpline-desc {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.helpline-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #dc3545;
+  margin: 0;
+}
+
+.safety-tips-container h1 {
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.video-link {
+  color: #764ba2;
+  text-decoration: none;
+  font-size: 0.9em;
+  display: block;
+}
+
+.video-link:hover {
+  color: #5a3a7a;
+  text-decoration: underline;
+}
+
+.additional-videos h6 {
+  color: #666;
+  font-size: 0.9em;
+  margin-bottom: 8px;
+}
+
+.app-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.platform-badge {
+  background: #667eea;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+}
+
+.rating-badge {
+  background: #28a745;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+}
+
+.resource-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.category-badge {
+  background: #764ba2;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.7em;
+  white-space: nowrap;
+}
+
+.resource-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.safety-apps-section, .resources-section {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 30px;
+  backdrop-filter: blur(10px);
+}
+
+.safety-apps-section h2, .resources-section h2 {
+  color: white;
+  font-weight: bold;
+}
+
+.app-card, .resource-card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 100%;
+  transition: transform 0.3s ease;
+}
+
+.app-card:hover, .resource-card:hover {
+  transform: translateY(-5px);
+}
+
+.app-card h4, .resource-card h4 {
+  color: #764ba2;
+  margin-bottom: 10px;
+}

@@ -24,38 +24,46 @@ const Profile = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    const { _id, uname, email, phoneNo, address, pinCode, emergencyMail, emergencyNo, extraEmail1, extraEmail2, extraPhone1, extraPhone2 } = auth?.user;
-    setUid(_id)
-    setuname(uname);
-    setEmail(email);
-    setphoneNo(phoneNo);
-    setaddress(address);
-    setpinCode(pinCode);
-    setemergencyMail(emergencyMail);
-    setemergencyNo(emergencyNo);
-    setextraEmail1(extraEmail1);
-    setextraEmail2(extraEmail2);
-    setextraPhone1(extraPhone1);
-    setextraPhone2(extraPhone2);
-    window.scrollTo(0, 0)
+    if (auth?.user) {
+      const { _id, uname, email, phoneNo, address, pinCode, emergencyMail, emergencyNo, extraEmail1, extraEmail2, extraPhone1, extraPhone2 } = auth.user;
+      setUid(_id || '')
+      setuname(uname || '');
+      setEmail(email || '');
+      setphoneNo(phoneNo || '');
+      setaddress(address || '');
+      setpinCode(pinCode || '');
+      setemergencyMail(emergencyMail || '');
+      setemergencyNo(emergencyNo || '');
+      setextraEmail1(extraEmail1 || '');
+      setextraEmail2(extraEmail2 || '');
+      setextraPhone1(extraPhone1 || '');
+      setextraPhone2(extraPhone2 || '');
+      window.scrollTo(0, 0)
+    }
   }, [auth?.user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.put("https://womensecbackend.onrender.com/api/v1/users/update", {
-        uid,
+      console.log('Submitting profile update...');
+      console.log('Auth token:', auth?.token ? 'Present' : 'Missing');
+      
+      const { data } = await axios.put("http://localhost:5000/api/v1/users/update", {
         uname,
         email,
         phoneNo,
         address,
-        pinCode,
+        pincode: pinCode,
         emergencyMail,
         emergencyNo,
         extraEmail1,
         extraEmail2,
         extraPhone1,
         extraPhone2
+      }, {
+        headers: {
+          Authorization: `Bearer ${auth?.token}`
+        }
       });
       if (data?.error) {
         toast.error(data?.error);
@@ -86,8 +94,8 @@ const Profile = () => {
                   <div className="d-flex flex-column align-items-center text-center">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width={150} />
                     <div className="mt-3">
-                      <h4>{auth?.user?.uname}</h4>
-                      <p className="text-muted font-size-sm">Pincode : {auth?.user?.pinCode}</p>
+                      <h4>{auth?.user?.uname || 'User'}</h4>
+                      <p className="text-muted font-size-sm">Pincode : {auth?.user?.pinCode || 'N/A'}</p>
                     </div>
                   </div>
                 </div>
@@ -196,7 +204,6 @@ const Profile = () => {
       </div>
       <Footer />
     </div>
-
   )
 }
 

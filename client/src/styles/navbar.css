@@ -94,6 +94,91 @@ nav {
   font-size: 17px;
 }
 
+/* Modern Hamburger Button */
+.hamburger-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: none !important;
+  border-radius: 12px !important;
+  padding: 8px 12px !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4) !important;
+  transition: all 0.3s ease !important;
+  color: white !important;
+}
+
+.hamburger-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6) !important;
+  color: #ffeb3b !important;
+}
+
+/* Modern Sidebar */
+.modern-sidebar {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3) !important;
+  border-radius: 0 20px 20px 0;
+}
+
+.modern-sidebar .border-bottom {
+  border-color: rgba(255,255,255,0.2) !important;
+  padding: 20px !important;
+}
+
+.modern-sidebar h5 {
+  color: white !important;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.modern-sidebar .btn {
+  background: rgba(255,255,255,0.2) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 50% !important;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s ease;
+}
+
+.modern-sidebar .btn:hover {
+  background: rgba(255,255,255,0.3) !important;
+  transform: rotate(90deg);
+}
+
+.modern-sidebar .nav-item {
+  margin: 4px 0;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.modern-sidebar .nav-item:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateX(8px);
+}
+
+.modern-sidebar .nav-link {
+  color: white !important;
+  font-weight: 600;
+  font-size: 16px;
+  padding: 12px 16px !important;
+  border-radius: 12px !important;
+  transition: all 0.3s ease;
+}
+
+.modern-sidebar .nav-link:hover {
+  color: #ffeb3b !important;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.modern-sidebar .nav-link span {
+  font-size: 20px;
+  margin-right: 12px;
+}
+
 @media (max-width: 1300px) {
   .header_wrapper .menu-navbar-nav {
     width: auto;

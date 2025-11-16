@@ -26,7 +26,7 @@ const About = () => {
             <div className="col-sm-12 col-lg-5 text-center text-lg-start">
               <p className="about_number">1</p>
               <h2 className="about_title">
-                Safe Siren is here for your safety
+                Suraksha is here for your safety
               </h2>
               <p className="about_text " style={{ textAlign: "justify" }}>
                 We ensure that each and every human being reaches home to safety

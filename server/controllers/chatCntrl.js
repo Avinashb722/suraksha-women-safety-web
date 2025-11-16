@@ -5,26 +5,33 @@ const {Emergency} = require('../models/emergencyModel')
 
 
 const addChats = asyncHandler(async(req,res) => {
-
-    const {senderId, receiverId, text, emergId} = req.body;
-
-    const sender = await User.findById(senderId);
-    const emerg = await Emergency.findById(emergId);
-    if(sender){
-        const receiver = await User.findById(receiverId);
-        if(receiver){
-            const newChat = await Chat.create({
-                sender: senderId,
-                receiver: receiverId,
-                textChat: text,
-                emergency: emergId
-            });
-            if(newChat){
-                res.status(201).json({message: "Message sent successfully"});
-            }
+    try {
+        const {senderId, receiverId, text, emergId} = req.body;
+        
+        console.log('Chat request received:', {senderId, receiverId, text, emergId});
+        
+        if (!text || !emergId) {
+            return res.status(400).json({message: "Missing required fields"});
         }
-    }
 
+        // Use string IDs directly without ObjectId validation
+        const chatData = {
+            sender: senderId || 'unknown',
+            receiver: receiverId || 'unknown',
+            textChat: text,
+            emergency: emergId
+        };
+        
+        console.log('Creating chat with data:', chatData);
+        const newChat = await Chat.create(chatData);
+        
+        console.log('Chat created successfully:', newChat._id);
+        res.status(201).json({message: "Message sent successfully", chat: newChat});
+        
+    } catch (error) {
+        console.error('Error creating chat:', error);
+        res.status(500).json({message: "Server error", error: error.message});
+    }
 });
 
 const getChats = asyncHandler(async(req,res) => {

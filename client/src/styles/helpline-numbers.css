@@ -1,0 +1,206 @@
+.helpline-container {
+    min-height: 100vh;
+    padding: 120px 20px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.helpline-header {
+    text-align: center;
+    margin-bottom: 40px;
+    color: white;
+}
+
+.helpline-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.helpline-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto 40px;
+}
+
+.search-box {
+    position: relative;
+    background: white;
+    border-radius: 25px;
+    padding: 15px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.search-icon {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-left: 30px;
+    font-size: 1rem;
+    background: transparent;
+}
+
+.helpline-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.helpline-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.helpline-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+.card-header h3 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.description {
+    color: #666;
+    font-size: 0.9rem;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 12px;
+    display: inline-block;
+}
+
+.number-display {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.number {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #e74c3c;
+    background: #fff5f5;
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: inline-block;
+    border: 2px solid #fee;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.copy-btn, .call-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.copy-btn {
+    background: #3498db;
+    color: white;
+}
+
+.copy-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+}
+
+.call-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.call-btn:hover {
+    background: #229954;
+    transform: translateY(-2px);
+}
+
+.no-results {
+    text-align: center;
+    color: white;
+    font-size: 1.2rem;
+    margin: 40px 0;
+}
+
+.emergency-note {
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 30px;
+    margin: 40px auto 0;
+    max-width: 800px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.emergency-note h3 {
+    color: #e74c3c;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+}
+
+.emergency-note ul {
+    list-style: none;
+    padding: 0;
+}
+
+.emergency-note li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    color: #333;
+    font-size: 1rem;
+}
+
+.emergency-note li:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .helpline-container {
+        padding: 100px 15px 40px;
+    }
+    
+    .helpline-header h1 {
+        font-size: 2rem;
+    }
+    
+    .helpline-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .number {
+        font-size: 1.5rem;
+    }
+}

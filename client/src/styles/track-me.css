@@ -1,0 +1,199 @@
+.track-me-container {
+    min-height: 100vh;
+    padding: 120px 20px 40px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.track-me-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+}
+
+.track-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.track-me-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.track-me-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+.track-me-content {
+    max-width: 600px;
+    margin: 0 auto 40px;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.start-tracking, .active-tracking {
+    text-align: center;
+}
+
+.start-tracking h3, .active-tracking h3 {
+    color: #333;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.start-tracking p, .active-tracking p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.start-btn {
+    background: #27ae60;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 auto;
+}
+
+.start-btn:hover {
+    background: #229954;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3);
+}
+
+.current-location {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    text-align: left;
+}
+
+.current-location h4 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.current-location p {
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.view-map-btn {
+    background: #3498db;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.view-map-btn:hover {
+    background: #2980b9;
+    color: white;
+}
+
+.tracking-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.safe-btn, .stop-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.safe-btn {
+    background: #27ae60;
+    color: white;
+}
+
+.safe-btn:hover {
+    background: #229954;
+    transform: translateY(-2px);
+}
+
+.stop-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.stop-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+}
+
+.track-me-info {
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.95);
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.track-me-info h3 {
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.track-me-info ul {
+    list-style: none;
+    padding: 0;
+}
+
+.track-me-info li {
+    padding: 8px 0;
+    color: #555;
+    position: relative;
+    padding-left: 25px;
+}
+
+.track-me-info li:before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: #27ae60;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .track-me-container {
+        padding: 100px 15px 40px;
+    }
+    
+    .track-me-header h1 {
+        font-size: 2rem;
+    }
+    
+    .tracking-actions {
+        flex-direction: column;
+    }
+    
+    .safe-btn, .stop-btn {
+        justify-content: center;
+    }
+}
